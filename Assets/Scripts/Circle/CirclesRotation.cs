@@ -6,12 +6,9 @@ public class CirclesRotation : MonoBehaviour
 
     #region Variables
     private bool _rotation = true;
-    private bool _isMobile;
     #endregion
 
     #region Unity Functions
-    private void Start() => _isMobile = (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) ? true : false;
-
     private void Update() => Rotate(_rotation);
     #endregion
 
@@ -25,19 +22,19 @@ public class CirclesRotation : MonoBehaviour
 
     private void CheckRotation()
     {
-        if (_isMobile)
-            #region Mobile
-            if (Input.touchCount > 0)
-                if (Input.GetTouch(0).phase == TouchPhase.Began)
-                {
-                    if (_rotation == true)
-                        _rotation = false;
-                    else
-                        _rotation = true;
-                }
-                #endregion
-        //        else
-        //        #region PC
+        #region Mobile
+        if (Input.touchCount > 0)
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                if (_rotation == true)
+                    _rotation = false;
+                else
+                    _rotation = true;
+            }
+        #endregion
+        
+        // Uncomment this part below for PC contorlling, and comment code above
+        //#region PC
         //if (Input.GetMouseButtonDown(0))
         //{
         //    if (_rotation == true)
